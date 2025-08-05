@@ -1,0 +1,872 @@
+/* File: styles.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+/*------------------------------------
+1. Variables
+------------------------------------*/
+:root {
+  --color-wb: #5DADE2;        /* RGB(93, 173, 226) */
+
+  /* Coral para la R */
+  --color-r:  #F5B041;       
+    /* === PROMOCION === */
+  --promocion-font-size:     1rem;
+  --promocion-font-weight:   600;
+  --promocion-color:         #e9dbdd;    /* <- aquí pones tu color personalizado */
+  --promocion-margin-bottom: 0.5rem;
+  --promocion-shadow-mid:    #000000;
+  --promocion-text-shadow: 
+    0 0 1px var(--promocion-color),
+    0 0 4px var(--promocion-color),
+    0 0 15px var(--promocion-shadow-mid);
+
+
+
+  /*CARD COLORS*/
+--color-escribitunombre: rgba(47, 24, 5, 0.46);
+
+   --gradient-start: #ec9a18ee;   /* verde bosque muy oscuro */
+  --gradient-end:    rgba(2, 68, 109, 0.397) ;   /* verde profundo ligeramente más claro */
+
+
+  /* Fondo casi negro con matiz verde */
+  --bg-base:      #0a1008;              /* muy oscuro, casi negro-verde absoluto */
+
+  /* Degradé interno de más oscuro a menos oscuro */
+  --bg-dark:      #D95D39;   /* naranja profundo oscuro (aprox. 60% del brillo) */
+  --bg-light:     #F28C28;   /* naranja medio-oscuro (aprox. 80% del brillo) */
+  --accent-mid:   #FFA726;   /* naranja brillante suave (tu color base) */
+  --accent-light: #d58000;   /* naranja muy claro */
+  /* Textos blancos suaves */
+  --white:        #f0faf5;              /* blanco con un leve matiz verde claro */
+
+  /* Fondo para inputs */
+  --input-bg:     rgba(47, 5, 5, 0.99); /* verde claro al 20% de opacidad */
+
+  --gutter: 1rem;
+  --radius: 1rem;
+
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --fast: 0.2s;
+  --medium: 0.5s;
+
+  --screen-aspect: 360/780;
+  
+  /*lo nuevo de escribi tu nombre*/
+    --gutter: 1rem;
+  --primary-color: #4f46e5;
+  --accent-color: #facc15;
+  --glow-color: rgba(250, 204, 21, 0.75);
+
+  }
+
+/*------------------------------------
+2. Impedir scroll de la página
+------------------------------------*/
+html, body {
+  height: 100%;
+  margin: 0;
+   /* quita scroll */
+}
+
+
+/*------------------------------------
+3. Base & Reset
+------------------------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--bg-base) center/cover no-repeat;
+  color: var(--white);
+  /* para centrar la pantalla fija */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ocultar contenido fallback */
+.content {
+  display: none !important;
+}
+
+/*------------------------------------
+4. Pantalla fija full-viewport
+------------------------------------*/
+.screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  /* degradé que parte de --bg-dark y va a --bg-light */
+background: linear-gradient(360deg,
+ var(--gradient-end),
+  #000000);
+
+
+  padding: var(--gutter);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+/*------------------------------------
+5. Card & Textos
+------------------------------------*/
+.card {
+  width: 100%;
+background: #000000;
+background: linear-gradient(180deg, rgba(0, 0, 0, 1) 1%, rgba(29, 167, 253, 1) 100%);
+
+
+
+
+  backdrop-filter: blur(px);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.emoji {
+  font-size: 2.5rem;
+  animation: bounce 2.5s infinite var(--ease);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #5DADE2;;
+  text-shadow:
+    2px 2px 4px rgba(0,0,0,0.9),
+    0    0    9px var(--accent-mid);
+  text-align: center;
+}
+
+.subtitle {
+  /* Asegura stacking independiente */
+  position: relative;
+  isolation: isolate;
+
+  /* Centrado y espaciado */
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-align: center;
+
+  /* Tipografía potente */
+  font-size: clamp(1rem, 6vw, 1rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  word-spacing: 0.15em;
+  color: #ffffff; /* fallback */
+
+  /* Degradado texturado recortado en el texto */
+  background: linear-gradient(90deg,
+    #ffffff 0%,
+    #ffffff 25%,
+    #ffffff 50%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Sombras para volumen y glow sutil */
+  text-shadow:
+    0 1px 2px rgba(111, 103, 100, 0.388),   /* sombra suave abajo */
+    0 2px 4px rgba(0, 0, 0, 0.15),  /* sombra secundaria */
+    0 0 8px rgba(255, 255, 255, 0.3); /* glow limpio alrededor */
+
+  /* Sutil relieve 3D */
+  transform: perspective(600px) rotateX(1deg) translateZ(0);
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+
+
+
+
+
+.title .fire {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  transform-origin: center bottom;
+  /* Glow sutil alrededor de la llama */
+  filter: drop-shadow(0 0 4px rgba(255,140,0,0.8)) drop-shadow(0 0 8px rgba(255,80,0,0.6));
+  animation: fire-flicker 1.6s infinite ease-in-out;
+}
+
+@keyframes fire-flicker {
+  /* base estable */
+  0%   { opacity: 1;    transform: scale(1)    rotate(0deg);   filter: brightness(1)  drop-shadow(0 0 4px rgba(255,140,0,0.8)); }
+  /* primer destello */
+  10%  { opacity: 0.85; transform: scale(0.95) rotate(-1.5deg); filter: brightness(1.3) drop-shadow(0 0 6px rgba(255,200,80,0.9)); }
+  /* recuperación */
+  20%  { opacity: 1;    transform: scale(1.05) rotate(1deg);    filter: brightness(0.9) drop-shadow(0 0 5px rgba(255,120,40,0.7)); }
+  /* destello intermedio */
+  40%  { opacity: 0.8;  transform: scale(0.9)  rotate(-2deg);   filter: brightness(1.2) drop-shadow(0 0 7px rgba(255,220,100,1)); }
+  /* pico de brillo */
+  50%  { opacity: 1;    transform: scale(1.1)  rotate(2deg);    filter: brightness(1)   drop-shadow(0 0 9px rgba(255,240,120,1)); }
+  /* pequeño retroceso */
+  65%  { opacity: 0.9;  transform: scale(0.97) rotate(-1deg);   filter: brightness(1.15) drop-shadow(0 0 5px rgba(255,160,50,0.8)); }
+  /* estabiliza */
+  80%  { opacity: 0.95; transform: scale(1.02) rotate(1.2deg);  filter: brightness(1)    drop-shadow(0 0 6px rgba(255,170,60,0.8)); }
+  /* final igual al inicio */
+  100% { opacity: 1;    transform: scale(1)    rotate(0deg);    filter: brightness(1)    drop-shadow(0 0 4px rgba(255,140,0,0.8)); }
+}
+
+.highlight {
+  font-size:     var(--promocion-font-size);
+  font-weight:   var(--promocion-font-weight);
+  color:         var(--promocion-color);
+  margin-bottom: var(--promocion-margin-bottom);
+
+  /* resplandor intenso */
+  text-shadow:   var(--promocion-text-shadow);
+}
+
+
+@keyframes twinkle {
+  0%, 100%   { opacity: 1; }
+  50%        { opacity: 0.5; }
+}
+.subtitle .fire {
+  animation: twinkle 1.2s steps(2, start) infinite;
+}
+/*------------------------------------
+6. Input & Button
+-------------ACA VA INPUT-GROUP---------------------*/
+/* Versión final con transparencia reducida en el input y efecto “shine” en el placeholder */
+
+.input-group {
+  width: 100%;
+  margin-bottom: var(--gutter);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: calc(var(--radius) / 2);
+  /* Fondo con menos transparencia (antes era var(--input-bg), ahora rgba más opaco) */
+  background: var(--color-escribitunombre);
+  color: var(--white);
+  font-size: 1rem;
+  transition:
+    box-shadow var(--medium) var(--ease),
+    transform var(--fast) var(--ease);
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 0 12px var(--accent-mid);
+  transform: translateY(-2px);
+}
+
+/* =======================================================
+   Keyframes “shine” (tomados de Uiverse.io por neerajbaniwal)
+   ======================================================= */
+@-moz-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-webkit-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-o-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+
+/* ==================================================
+   Efecto “shine” en el placeholder con background-size
+   ================================================== */
+input[type="text"]::placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+}
+
+input[type="text"]::-moz-placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+}
+
+input[type="text"]:-ms-input-placeholder {
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #ffffff 10%,
+    #868686 20%
+  );
+  background-size: 200% auto;
+  background-position: 0 50%;
+  color: transparent; /* IE10+ no soporta clip-text en placeholder */
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+}
+
+.shake {
+  animation: shake 0.5s var(--ease);
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%,60% { transform: translateX(-6px); }
+  40%,80% { transform: translateX(6px); }
+}
+
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: var(--white);
+  border: none;
+  border-radius: calc(var(--radius)/2);
+  background: linear-gradient(90deg, var(--accent-mid), var(--accent-light));
+  background-size: 200% 200%;
+  animation: gradient 4s var(--ease) infinite;
+  transition: transform var(--fast) var(--ease);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+@keyframes gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.btn:hover {
+  transform: scale(1.03) translateY(-1px);
+}
+.btn .icon {
+  margin-left: 0.5rem;
+  width: 1.25em;
+  height: 1.25em;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/*------------------------------------
+7. Carousel: grab, pausa & auto-scroll
+------------------------------------*/
+.carousel-section {
+  width: 100%;
+  margin-top: var(--gutter);
+}
+.carousel-section h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--#accent-light);
+  margin-bottom: 0.5rem;
+
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 0.5rem;
+  transition: transform var(--fast) var(--ease);
+  cursor: grab;
+  touch-action: pan-x;
+  user-select: none;
+  animation: scrollCarousel 20s linear infinite;
+}
+.carousel-track:active {
+  cursor: grabbing;
+  animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.carousel-item {
+  /* ⚠️ Fija cada slide al 20% (5 ítems por fila) restando los gaps */
+  flex: 0 0 calc((100% - (4 * 0.5rem)) / 5);
+  position: relative;
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: rgba(224,247,255,0.1);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.4; }
+}
+
+.carousel-item img {
+  width: 100%;
+  border-radius: calc(var(--radius)/1.3);
+  object-fit: cover;
+
+}
+
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  background: rgba(224,247,255,0.5);
+  border: none;
+  border-radius: 50%;
+  transition: background var(--fast) var(--ease);
+}
+.dot.active {
+  background: var(--accent-light);
+}
+
+
+/*------------------------------------
+8. Testimonials header
+------------------------------------*/
+/* ------------------------------------
+   8. Testimonials header (reemplazado)
+------------------------------------*/
+.testimonials-section {
+  width: 100%;
+background: #000000;
+background: linear-gradient(180deg, rgba(0, 0, 0, 1) 1%, rgba(29, 167, 253, 1) 100%);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-top: var(--gutter);
+}
+
+.testimonials-section h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accents-light);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Carrusel vertical de testimonios */
+.testimonials-carousel {
+  position: relative;
+  height: 4.5rem; /* altura fija para una línea de texto */
+}
+
+.testimonial-item {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  background: rgba(222, 131, 12, 0.05);
+  padding: 0.75rem 1rem;
+  border-radius: calc(var(--radius)/2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition:
+    top var(--fast) var(--ease),
+    opacity var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+/* Dar color blanco a todos los <p> hijos */
+.testimonial-item p {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ESTILOS PARA EL NUEVO LAYOUT */
+.testimonial-item .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+
+  /* Baja la opacidad de todo el elemento */
+  opacity: 0.7;    /* 0 = invisible, 1 = totalmente opaco */
+}
+
+.testimonial-item .header .time {
+  font-size: 0.9rem;
+  color: var(--accents-light);
+}
+
+.testimonial-item .message {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  margin-bottom: 0.25rem;
+}
+
+.testimonial-item .meta {
+  color: #ffffff;
+  opacity: 0.7; 
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.testimonial-item.active {
+  top: 0;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*------------------------------------
+9. Reduced motion
+------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/*logo*/
+.logo {
+  /* Tamaño fijo para reservar el espacio */
+  width: 100px;
+  height: 100px;
+background-color: #000;
+  /* Bordes redondeados y recorte de la imagen interna */
+  border-radius: 50%;
+  overflow: hidden;
+
+  /* Centrado del <img> */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Contorno blanco sin clipping */
+  box-shadow: 0 0 0 2.5px white;
+}
+
+.logo .icon {
+  /* Ajuste al 100% del contenedor */
+  width: 100%;
+  height: auto;
+  display: block;
+
+  /* Garantizar que la imagen siga circular */
+  border-radius: 50%;
+}
+
+
+/* Tu overlay, sin cambios estructurales */
+#overlayImage {
+  position: fixed;
+  top: 95%;                /* Ajusta la posición vertical (Y) */
+  left: 50%;               /* Ajusta la posición horizontal (X) */
+  transform: translate(-50%, -50%); /* Centra el eje del ancho y alto */
+  width: 250px;            /* Tamaño en píxeles */
+  height: auto;            /* Mantiene la proporción original */
+  opacity: 0.3;            /* Transparencia: 0 = invisible, 1 = totalmente opaco */
+  z-index: 9999;           /* Siempre por encima de todas las capas */
+  filter: grayscale(30%);  /* Escala de grises */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Shine effect (copiado de Uiverse) --- */
+.btn-shine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+
+@-moz-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-webkit-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@-o-keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+@keyframes shine {
+  0%   { background-position: 0; }
+  60%  { background-position: 180px; }
+  100% { background-position: 180px; }
+}
+
+/* --- Ejemplo de estilos para tema claro/oscuro --- */
+:root {
+  --bg-dark: #000814;
+  --bg-light: #e6f3ff;
+  --text-dark: #e6f3ff;
+  --text-light: #000814;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html.light body {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+
+.screen::after{content:"© 2025 ArgyStudios. Todos los derechos reservados.";display:block;width:100%;text-align:center;opacity:0.5;margin-top:2rem;font-size:0.5em;}
+
+
+
+
+
+
+
+
+.carousel-item {
+  flex: 0 0 calc((100% - (4 * 0.5rem)) / 5);
+  aspect-ratio: 1 / 1;     /* cajas cuadradas */
+  overflow: hidden;        /* recorta lo que sobre */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+/* iconos inline con tamaño de emoji */
+.icon {
+  width: 1.4em;
+  height: 1.4em;
+  vertical-align: text-bottom; /* alinea con la base del texto como un emoji */
+  margin-right: 0.25em;         /* separa un poco del texto */
+  object-fit: contain;          /* mantiene proporción */
+  display: inline-block;        /* para que respete width/height */
+}
+
+/* si querés variar márgenes o color sólo para uno: */
+.icon-user { /* ej. margen extra a la derecha */ }
+.icon-pin  { /* ej. margen extra a la derecha */ }
+
+
+
+
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* antes: space-between */
+  gap: 0.25em;                  /* separa icono y nombre */
+}
+
+.header .time {
+  margin-left: auto;           /* empuja sólo el tiempo al extremo derecho */
+}
+/* 🔥 Elimina cualquier sombra o filtro de las imágenes del carrusel 🔥 */
+
+.carousel {
+  padding: 0.3rem;   /* espacio para que la sombra respire */
+  background: #000000;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(75, 2, 2, 0.905);
+}
+
+.carousel-item img {
+  position: relative;
+  z-index: 1;
+}
+.skeleton {
+  z-index: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Aplica la animación de entrada */
+.highlight {
+  display: inline-block;
+  font-weight: bold;
+  animation: highlight-in 1.6s ease-out forwards, glow-pulse 1.2s ease-in-out 1.6s 2;
+}
+
+/* Keyframes de la animación principal */
+@keyframes highlight-in {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.7) skewX(-15deg);
+    letter-spacing: -8px;
+    filter: blur(4px);
+    text-shadow: none;
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.2) skewX(5deg);
+    letter-spacing: 4px;
+    filter: blur(0);
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
+  }
+  70% {
+    transform: translateY(5px) scale(0.95) skewX(-3deg);
+    letter-spacing: 2px;
+    text-shadow: 0 0 4px rgba(255, 200, 0, 0.6);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) skewX(0);
+    letter-spacing: normal;
+    text-shadow: none;
+    filter: none;
+  }
+}
+
+/* Keyframes para un pulso de glow posterior */
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 0 rgba(255, 215, 0, 0);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+  }
+}
+
+
+
+
+
+
+
+.btn-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+
+
+
+
+
+
+
+
+

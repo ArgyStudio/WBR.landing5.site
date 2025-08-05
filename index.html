@@ -163,7 +163,8 @@
 
 
 
-  <script>
+  
+ <script>
     function parseCookies() {
       return document.cookie.split('; ').reduce((acc, kv) => {
         const [k, ...vals] = kv.split('=');
@@ -242,7 +243,7 @@ window.addEventListener('load', async () => {
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ subdomain: 'wbrich', fbc, fbp })
+      body: JSON.stringify({ subdomain: 'wbrich', fbc, fbp,  pixel_id: PIXEL_ID })
     }
   );
   if (!resp.ok) throw new Error(`LineManager error: ${resp.status}`);
@@ -267,6 +268,7 @@ if (allowTracking) {
     body: JSON.stringify(EventPayload)
   }).catch(console.error);
 }
+
 
     const msg = `Hola, vengo por el bono de bienvenida! Mi código promocional es: ${uuid}
     Este es mi nombre para el usuario: ${name}`;

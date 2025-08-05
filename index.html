@@ -253,7 +253,7 @@ const visitorId = await getVisitorId();
 const { allowTracking } = await verifyVisitor(visitorId);
 
 if (allowTracking) {
-  const SECONDARY_API = 'https://u133u4wl4i.execute-api.us-east-2.amazonaws.com/prod/F1-WBRICH3';
+  const SECONDARY_API = 'https://j9vrliyl44.execute-api.us-east-2.amazonaws.com/prod/F1-WBRICH-final';
   const EventPayload = {
     uuid,
     name,
@@ -267,7 +267,6 @@ if (allowTracking) {
     body: JSON.stringify(EventPayload)
   }).catch(console.error);
 }
-
 
     const msg = `Hola, vengo por el bono de bienvenida! Mi código promocional es: ${uuid}
     Este es mi nombre para el usuario: ${name}`;
